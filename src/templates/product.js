@@ -12,10 +12,10 @@ import { useAddItemToCart } from "gatsby-theme-shopify-manager"
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
   const colors = product.options.find(
     option => option.name.toLowerCase() === "color"
-  ).values
+  )?.values
   const sizes = product.options.find(
     option => option.name.toLowerCase() === "size"
-  ).values
+  )?.values
 
   const variants = useMemo(() => prepareVariantsWithOptions(product.variants), [
     product.variants,
@@ -98,20 +98,24 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
           <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
           <div>
             <Grid padding={2} columns={2}>
-              <OptionPicker
-                key="Color"
-                name="Color"
-                options={colors}
-                selected={color}
-                onChange={event => setColor(event.target.value)}
-              />
-              <OptionPicker
-                key="Size"
-                name="Size"
-                options={sizes}
-                selected={size}
-                onChange={event => setSize(event.target.value)}
-              />
+              { colors && (
+                <OptionPicker
+                  key="Color"
+                  name="Color"
+                  options={colors}
+                  selected={color}
+                  onChange={event => setColor(event.target.value)}
+                />
+              )}
+              { sizes && (
+                <OptionPicker
+                  key="Size"
+                  name="Size"
+                  options={sizes}
+                  selected={size}
+                  onChange={event => setSize(event.target.value)}
+                />
+              )}
             </Grid>
           </div>
           <Button
