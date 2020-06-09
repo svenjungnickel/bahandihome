@@ -1,9 +1,9 @@
 {
-  "name": "sell-things-fast",
+  "name": "bahandihome",
   "private": true,
-  "description": "A proof-of-concept Gatsby site with a fake Shopify store called Only Down",
+  "description": "Gatsby & Shopify E-Commerce Shop",
   "version": "0.1.0",
-  "author": "Trevor Harmon <thetrevorharmon@gmail.com>",
+  "author": "Sven Jungnickel <svenjungnickel@gmail.com>",
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
@@ -23,6 +23,7 @@
     "gatsby-theme-shopify-manager": "^0.1.5",
     "gatsby-theme-style-guide": "^0.2.49",
     "gatsby-transformer-sharp": "^2.3.3",
+    "netlify-plugin-gatsby-cache": "^0.2.2",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
@@ -35,7 +36,8 @@
     "prettier": "^1.19.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "shopify"
   ],
   "license": "MIT",
   "scripts": {

@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Only Down`,
-    description: `Get down with Down.`,
-    author: `@gatsbyjs`,
+    title: `Bahandi Home`,
+    description: `Gatsby & Shopify E-Commerce Shop`,
+    author: `@svenjungnickel1`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -51,6 +51,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

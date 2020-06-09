@@ -52,11 +52,11 @@ const Header = ({ siteTitle }) => {
               "&:hover": {
                 textDecoration: "underline",
               },
-              "&::before": {
-                content: '"▼"',
-                position: "absolute",
-                marginLeft: "-20px",
-              },
+              //"&::before": {
+              //  content: '"▼"',
+              //  position: "absolute",
+              //  marginLeft: "-20px",
+              //},
             }}
           >
             {siteTitle}

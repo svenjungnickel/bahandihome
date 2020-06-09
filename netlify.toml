@@ -1,0 +1,7 @@
+[build]
+  publish = "public/"
+  ignore = "git log -1 --pretty=%B | grep dependabot"
+  command = "npm run build"
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"

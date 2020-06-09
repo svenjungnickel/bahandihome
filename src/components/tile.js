@@ -30,9 +30,14 @@ const Tile = ({ title, slug, price, image }) => {
         flexDirection: "column",
       }}
     >
-      <div sx={{ position: "relative" }}>
+      <Link url={`/product/${slug}`} sx={{
+        position: "relative",
+        "&:hover": {
+          opacity: 0.9,
+        },
+      }}>
         <Img fluid={imageSrc} />
-      </div>
+      </Link>
       <Styled.h2 sx={{ mt: 4, mb: 0, fontSize: 3 }}>{title}</Styled.h2>
       <Text sx={{ fontSize: 4, mb: 2 }}>${price.toFixed(2)}</Text>
       <Link url={`/product/${slug}`} isButton>
