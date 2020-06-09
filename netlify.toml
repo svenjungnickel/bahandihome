@@ -1,7 +1,7 @@
 [build]
   publish = "public/"
   ignore = "git log -1 --pretty=%B | grep dependabot"
-  command = "npm run build"
+  command = "echo SHOP_NAME=$SHOP_NAME >> .env && echo SHOP_TOKEN=$SHOP_TOKEN >> .env && npm run build"
 
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
