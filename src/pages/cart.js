@@ -1,10 +1,7 @@
-/** @jsx jsx */
-import React from "react"
-import { Styled, jsx } from "theme-ui"
-import Img from "gatsby-image"
-import { Grid, Divider, Button, Card, Text } from "@theme-ui/components"
-import { Layout, SEO, Link } from "../components"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import Img from 'gatsby-image'
+import { Layout, SEO, Link } from '../components'
+import { useStaticQuery, graphql } from 'gatsby'
 
 import {
   useAddItemToCart,
@@ -12,7 +9,7 @@ import {
   useCheckoutUrl,
   useCart,
   useUpdateItemQuantity,
-} from "gatsby-theme-shopify-manager"
+} from 'gatsby-theme-shopify-manager'
 
 const CartPage = () => {
   const {
@@ -63,15 +60,11 @@ const CartPage = () => {
 
   function getCartTotals(cart) {
     if (cart == null) {
-      return { tax: "-", total: "-" }
+      return { tax: '-', total: '-' }
     }
 
-    const tax = cart.totalTaxV2
-      ? `$${Number(cart.totalTaxV2.amount).toFixed(2)}`
-      : "-"
-    const total = cart.totalPriceV2
-      ? `$${Number(cart.totalPriceV2.amount).toFixed(2)}`
-      : "-"
+    const tax = cart.totalTaxV2 ? `$${Number(cart.totalTaxV2.amount).toFixed(2)}` : '-'
+    const total = cart.totalPriceV2 ? `$${Number(cart.totalPriceV2.amount).toFixed(2)}` : '-'
 
     return {
       tax,
@@ -107,27 +100,17 @@ const CartPage = () => {
   }
 
   const LineItem = ({ item }) => (
-    <div
-      sx={{
-        display: "grid",
-        gridGap: "15px",
-        gridTemplateColumns: "120px 2fr 80px 80px",
-        alignItems: "center",
-      }}
-    >
+    <div className="grid gap-4 items-center" style={{ gridTemplateColumns: '120px 2fr 80px 80px' }}>
       <div>
-        <div sx={{ padding: 1, border: "1px solid gray" }}>
+        <div className="p-1 border border-solid border-gray-900">
           <Img fluid={getImageFluidForVariant(item.variant.id)} />
         </div>
       </div>
       <div>
-        <Link
-          url={`/product/${getHandleForVariant(item.variant.id)}`}
-          sx={{ fontSize: 3, m: 0, fontWeight: 700 }}
-        >
+        <Link url={`/product/${getHandleForVariant(item.variant.id)}`} className="text-xl m-0 font-bold text-current">
           {item.title}
         </Link>
-        <Styled.ul sx={{ mt: 2, mb: 0, padding: 0, listStyle: "none" }}>
+        <ul className="mt-2 mb-0 p-0">
           {item.variant.selectedOptions.map(({ name, value }) => (
             <li key={name}>
               <strong>{name}: </strong>
@@ -138,43 +121,32 @@ const CartPage = () => {
             <strong>Quantity: </strong>
             {item.quantity}
           </li>
-        </Styled.ul>
+        </ul>
       </div>
-      <Button variant="link" onClick={() => removeFromCart(item.variant.id)}>
-        Delete
-      </Button>
-      <Text
-        sx={{
-          fontSize: 4,
-          fontWeight: 700,
-          marginLeft: "auto",
-        }}
+      <button
+        className="p-2 rounded no-underline font-semibold bg-black text-white text-center hover:bg-gray-800"
+        onClick={() => removeFromCart(item.variant.id)}
       >
-        ${Number(item.variant.priceV2.amount).toFixed(2)}
-      </Text>
+        Delete
+      </button>
+      <span className="text-2xl font-bold ml-auto">${Number(item.variant.priceV2.amount).toFixed(2)}</span>
     </div>
   )
 
   const emptyCart = (
     <Layout>
       <SEO title="Cart" />
-      <Styled.h1>Cart</Styled.h1>
-      <Styled.p>Your shopping cart is empty.</Styled.p>
-      <Button
-        sx={{ mt: 4 }}
-        onClick={() =>
-          addItemToCart(
-            variants[Math.floor(Math.random() * (variants.length - 1))]
-              .shopifyId,
-            1
-          )
-        }
+      <h1>Cart</h1>
+      <p>Your shopping cart is empty.</p>
+      <button
+        className="mt-4"
+        onClick={() => addItemToCart(variants[Math.floor(Math.random() * (variants.length - 1))].shopifyId, 1)}
       >
         <span role="img" aria-label="Dice Emoji">
           🎲
-        </span>{" "}
+        </span>{' '}
         Random item plz
-      </Button>
+      </button>
     </Layout>
   )
 
@@ -183,46 +155,44 @@ const CartPage = () => {
   ) : (
     <Layout>
       <SEO title="Cart" />
-      <Styled.h1>Cart</Styled.h1>
+      <h1>Cart</h1>
       {lineItems.map(item => (
         <React.Fragment key={item.id}>
           <LineItem key={item.id} item={item} />
-          <Divider sx={{ my: 3 }} />
+          <hr className="mt-3 mb-3" />
         </React.Fragment>
       ))}
-      <div sx={{ display: "flex" }}>
-        <Card sx={{ marginLeft: "auto", minWidth: "10rem", p: 4 }}>
-          <Styled.h3 sx={{ mt: 0, mb: 3 }}>Cart Summary</Styled.h3>
-          <Divider />
+      <div className="flex">
+        <div className="ml-auto min-w-40 p-10 bg-gray-100">
+          <h3 className="mt-0 mb-3">Cart Summary</h3>
+          <hr />
 
-          <Grid gap={1} columns={2} sx={{ my: 3 }}>
-            <Text>Subtotal:</Text>
-            <Text sx={{ marginLeft: "auto" }}>{total}</Text>
-            <Text>Shipping:</Text>
-            <Text sx={{ marginLeft: "auto" }}> - </Text>
-            <Text>Tax: </Text>
-            <Text sx={{ marginLeft: "auto" }}>{tax}</Text>
-          </Grid>
+          <div className="grid grid-cols-2 gap-1 mt-3 mb-3">
+            <span>Subtotal:</span>
+            <span className="ml-auto">{total}</span>
+            <span>Shipping:</span>
+            <span className="ml-auto"> - </span>
+            <span>Tax: </span>
+            <span className="ml-auto">{tax}</span>
+          </div>
 
-          <Divider />
-          <Grid gap={1} columns={2}>
-            <Text variant="bold">Estimated Total:</Text>
-            <Text variant="bold" sx={{ marginLeft: "auto" }}>
-              {total}
-            </Text>
-          </Grid>
+          <hr />
+          <div className="grid grid-cols-2 gap-1">
+            <span className="font-bold">Estimated Total:</span>
+            <span className="font-bold ml-auto">{total}</span>
+          </div>
           <br />
           {checkoutUrl != null ? (
             <a
-              sx={{ mt: 4, width: "100%" }}
+              className="mt-4 w-full"
               href={checkoutUrl}
-              target="_blank"
+              //target="_blank"
               rel="noopener noreferrer"
             >
               Checkout
             </a>
           ) : null}
-        </Card>
+        </div>
       </div>
     </Layout>
   )

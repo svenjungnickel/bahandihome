@@ -1,8 +1,6 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Grid } from "@theme-ui/components"
-import { Layout, SEO, Tile } from "../components"
-import { graphql } from "gatsby"
+import React from 'react'
+import { Layout, SEO, Tile } from '../components'
+import { graphql } from 'gatsby'
 
 const IndexPage = ({ data }) => {
   const {
@@ -10,10 +8,9 @@ const IndexPage = ({ data }) => {
   } = data
 
   return (
-    <Layout hasHero>
+    <Layout hasHero={true}>
       <SEO title="Home" />
-      <div sx={{ marginTop: 5 }}></div>
-      <Grid gap={2} columns={3}>
+      <div className="grid grid-cols-4 gap-2 mt-5">
         {products.map(product => (
           <Tile
             key={product.handle}
@@ -23,7 +20,7 @@ const IndexPage = ({ data }) => {
             image={product.images[0].localFile.childImageSharp.fluid}
           />
         ))}
-      </Grid>
+      </div>
     </Layout>
   )
 }

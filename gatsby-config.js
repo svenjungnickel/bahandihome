@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env`,
 })
 
@@ -23,7 +23,7 @@ module.exports = {
       // Shopify-related variables in the context setup script.
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["SHOP_NAME", "SHOP_TOKEN"],
+        whitelist: ['SHOP_NAME', 'SHOP_TOKEN'],
       },
     },
     {
@@ -33,8 +33,17 @@ module.exports = {
         accessToken: process.env.SHOP_TOKEN,
       },
     },
-    "gatsby-plugin-theme-ui",
-    `gatsby-theme-style-guide`,
+    //"gatsby-plugin-theme-ui",
+    //`gatsby-theme-style-guide`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require('tailwindcss'),
+          require('./tailwind.config.js'), // Optional: Load custom Tailwind CSS configuration
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

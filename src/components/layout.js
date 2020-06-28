@@ -1,9 +1,7 @@
-/** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import { Header, Hero } from "../components"
-import "normalize.css"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql } from 'gatsby'
+import { Header, Hero } from '../components'
 
 const Layout = ({ children, hasHero }) => {
   const {
@@ -22,34 +20,32 @@ const Layout = ({ children, hasHero }) => {
   `)
 
   return (
-    <Styled.root>
+    <>
       <Header siteTitle={title} />
-      {hasHero ? <Hero title={title} description={description} /> : null}
-      <div
-        sx={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: 3,
-          paddingTop: 0,
-        }}
-      >
+      {true === hasHero ? <Hero title={title} description={description} /> : null}
+      <div className="container m-auto">
         <main>{children}</main>
-        <footer sx={{ mt: 6 }}>
-          <Styled.p>
+        <footer className="text-center mt-32">
+          <p>
             © {new Date().getFullYear()} {title}, Built with
             {` `}
-            <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
             {` and `}
-            <Styled.a href="https://www.shopify.ca">Shopify</Styled.a>.
-          </Styled.p>
+            <a href="https://www.shopify.ca">Shopify</a>.
+          </p>
         </footer>
       </div>
-    </Styled.root>
+    </>
   )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  hasHero: PropTypes.bool,
+}
+
+Layout.defaultProps = {
+  hasHero: false,
 }
 
 export { Layout }

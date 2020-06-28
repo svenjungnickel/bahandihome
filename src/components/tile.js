@@ -1,10 +1,8 @@
-/** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
-import PropTypes from "prop-types"
-import Img from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
-import { Card, Text } from "@theme-ui/components"
-import { Link } from "../components"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
+import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from './link'
 
 const Tile = ({ title, slug, price, image }) => {
   const data = useStaticQuery(graphql`
@@ -22,28 +20,16 @@ const Tile = ({ title, slug, price, image }) => {
   const imageSrc = image ? image : data.placeholderImage.childImageSharp.fluid
 
   return (
-    <Card
-      sx={{
-        maxWidth: 290,
-        p: 3,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Link url={`/product/${slug}`} sx={{
-        position: "relative",
-        "&:hover": {
-          opacity: 0.9,
-        },
-      }}>
+    <div className="max-w-xs p-3 flex flex-col">
+      <Link url={`/product/${slug}`} className="relative hover:opacity-75">
         <Img fluid={imageSrc} />
       </Link>
-      <Styled.h2 sx={{ mt: 4, mb: 0, fontSize: 3 }}>{title}</Styled.h2>
-      <Text sx={{ fontSize: 4, mb: 2 }}>${price.toFixed(2)}</Text>
+      <h2 className="mt-4 text-2xl">{title}</h2>
+      <span className="text-2xl mb-2">${price.toFixed(2)}</span>
       <Link url={`/product/${slug}`} isButton>
         View
       </Link>
-    </Card>
+    </div>
   )
 }
 
@@ -51,11 +37,12 @@ Tile.propTypes = {
   title: PropTypes.string,
   slug: PropTypes.string,
   price: PropTypes.number,
+  image: PropTypes.object,
 }
 
 Tile.defaultProps = {
   title: "Men's Down Jacket",
-  price: "50",
+  price: '50',
 }
 
 export { Tile }
