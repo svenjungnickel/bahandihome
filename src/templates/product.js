@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useMemo } from 'react'
 import Img from 'gatsby-image'
-import { Layout, SEO } from '../components'
+import { Layout, SEO } from 'components'
 import { Thumbnail, OptionPicker } from './components'
 import { graphql } from 'gatsby'
 import { prepareVariantsWithOptions, prepareVariantsImages } from './utilities'

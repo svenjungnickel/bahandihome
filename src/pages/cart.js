@@ -1,6 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { Layout, SEO, Link } from '../components'
+import { Layout, SEO, Link } from 'components'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import {
@@ -11,7 +11,7 @@ import {
   useUpdateItemQuantity,
 } from 'gatsby-theme-shopify-manager'
 
-import cartStyles from '../css/pages/cart.module.scss'
+import cartStyles from 'css/pages/cart.module.scss'
 
 const CartPage = () => {
   const {

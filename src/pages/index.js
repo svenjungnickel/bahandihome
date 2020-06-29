@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, SEO, Tile } from '../components'
+import { Layout, SEO, Tile } from 'components'
 import { graphql } from 'gatsby'
 
 const IndexPage = ({ data }) => {

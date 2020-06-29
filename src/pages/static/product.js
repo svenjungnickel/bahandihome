@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Img from 'gatsby-image'
-import { Layout, SEO } from '../../components'
+import { Layout, SEO } from 'components'
 import { useStaticQuery, graphql } from 'gatsby'
 
 const ProductPage = () => {

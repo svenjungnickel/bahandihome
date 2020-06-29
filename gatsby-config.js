@@ -10,6 +10,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-resolve-src`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -33,8 +34,6 @@ module.exports = {
         accessToken: process.env.SHOP_TOKEN,
       },
     },
-    //"gatsby-plugin-theme-ui",
-    //`gatsby-theme-style-guide`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
