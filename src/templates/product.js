@@ -36,7 +36,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
 
   const gallery =
     images.length > 1 ? (
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
         {images.map(({ src, color }) => (
           <Thumbnail key={color} src={src} onClick={() => setColor(color)} />
         ))}
@@ -66,7 +66,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
           </span>
         </div>
       ) : null}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <div className="border border-solid border-gray-900 p-2 mb-2">
             <Img fluid={variant.image.localFile.childImageSharp.fluid} />
@@ -77,7 +77,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
           <h1 className="mt-0 mb-2">{product.title}</h1>
           <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
           <div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {colors && (
                 <OptionPicker
                   key="Color"

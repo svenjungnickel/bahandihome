@@ -11,6 +11,8 @@ import {
   useUpdateItemQuantity,
 } from 'gatsby-theme-shopify-manager'
 
+import cartStyles from '../css/pages/cart.module.scss'
+
 const CartPage = () => {
   const {
     allShopifyProductVariant: { nodes: variants },
@@ -100,11 +102,9 @@ const CartPage = () => {
   }
 
   const LineItem = ({ item }) => (
-    <div className="grid gap-4 items-center" style={{ gridTemplateColumns: '120px 2fr 80px 80px' }}>
-      <div>
-        <div className="p-1 border border-solid border-gray-900">
-          <Img fluid={getImageFluidForVariant(item.variant.id)} />
-        </div>
+    <div className={`grid grid-cols-1 gap-4 items-center max-w-xs sm:max-w-full m-auto sm:m-0 ${cartStyles.cartGrid}`}>
+      <div className="p-1 border border-solid border-gray-900">
+        <Img fluid={getImageFluidForVariant(item.variant.id)} />
       </div>
       <div>
         <Link url={`/product/${getHandleForVariant(item.variant.id)}`} className="text-xl m-0 font-bold text-current">
@@ -163,7 +163,7 @@ const CartPage = () => {
         </React.Fragment>
       ))}
       <div className="flex">
-        <div className="ml-auto min-w-40 p-10 bg-gray-100">
+        <div className="m-auto sm:m-0 sm:ml-auto min-w-40 p-10 bg-gray-100">
           <h3 className="mt-0 mb-3">Cart Summary</h3>
           <hr />
 

@@ -20,7 +20,7 @@ const Tile = ({ title, slug, price, image }) => {
   const imageSrc = image ? image : data.placeholderImage.childImageSharp.fluid
 
   return (
-    <div className="max-w-xs p-3 flex flex-col">
+    <div className="w-full p-3 flex flex-col m-auto sm:m-0">
       <Link url={`/product/${slug}`} className="relative hover:opacity-75">
         <Img fluid={imageSrc} />
       </Link>

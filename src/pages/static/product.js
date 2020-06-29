@@ -42,7 +42,7 @@ const ProductPage = () => {
       <div className="border border-solid border-gray-900 p-2 mb-2">
         <Img fluid={image.childImageSharp.fluid} />
       </div>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-2">
         {productImages.map((productImage) => (
           <Thumbnail key={productImage.id} image={productImage} />
         ))}

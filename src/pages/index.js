@@ -10,8 +10,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout hasHero={true}>
       <SEO title="Home" />
-      <div className="grid grid-cols-4 gap-2 mt-5">
-        {products.map(product => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-5">
+        {products.map((product) => (
           <Tile
             key={product.handle}
             slug={product.handle}
@@ -36,7 +36,7 @@ export const IndexPageQuery = graphql`
         images {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 290) {
+              fluid(maxWidth: 600) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
