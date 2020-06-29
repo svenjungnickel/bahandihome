@@ -29,15 +29,12 @@
 */
 
 export function prepareVariantsWithOptions(variants) {
-  return variants.map(variant => {
+  return variants.map((variant) => {
     // convert the options to a dictionary instead of an array
-    const optionsDictionary = variant.selectedOptions.reduce(
-      (options, option) => {
-        options[`${option.name.toLowerCase()}`] = option.value
-        return options
-      },
-      {}
-    )
+    const optionsDictionary = variant.selectedOptions.reduce((options, option) => {
+      options[`${option.name.toLowerCase()}`] = option.value
+      return options
+    }, {})
 
     // return an object with all of the variant properties + the options at the top level
     return {
@@ -89,7 +86,7 @@ export function prepareVariantsImages(variants, optionKey) {
 
   // prepare an array of image objects that include both the image
   // and the optionkey value.
-  const images = Object.keys(imageDictionary).map(key => {
+  const images = Object.keys(imageDictionary).map((key) => {
     return {
       [optionKey]: key,
       src: imageDictionary[key],

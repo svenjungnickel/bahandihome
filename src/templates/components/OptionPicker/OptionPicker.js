@@ -10,7 +10,7 @@ export const OptionPicker = ({ name, options, onChange, selected }) => {
         onBlur={onChange}
         value={selected}
       >
-        {options.map(option => (
+        {options.map((option) => (
           <option value={option} key={option}>
             {option}
           </option>

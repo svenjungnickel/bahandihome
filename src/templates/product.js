@@ -8,8 +8,8 @@ import { prepareVariantsWithOptions, prepareVariantsImages } from './utilities'
 import { useAddItemToCart } from 'gatsby-theme-shopify-manager'
 
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
-  const colors = product.options.find(option => option.name.toLowerCase() === 'color')?.values
-  const sizes = product.options.find(option => option.name.toLowerCase() === 'size')?.values
+  const colors = product.options.find((option) => option.name.toLowerCase() === 'color')?.values
+  const sizes = product.options.find((option) => option.name.toLowerCase() === 'size')?.values
 
   const variants = useMemo(() => prepareVariantsWithOptions(product.variants), [product.variants])
   const images = useMemo(() => prepareVariantsImages(variants, 'color'), [variants])
@@ -25,7 +25,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
   const [addedToCartMessage, setAddedToCartMessage] = useState(null)
 
   useEffect(() => {
-    const newVariant = variants.find(variant => {
+    const newVariant = variants.find((variant) => {
       return variant.size === size && variant.color === color
     })
 
@@ -84,7 +84,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
                   name="Color"
                   options={colors}
                   selected={color}
-                  onChange={event => setColor(event.target.value)}
+                  onChange={(event) => setColor(event.target.value)}
                 />
               )}
               {sizes && (
@@ -93,7 +93,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
                   name="Size"
                   options={sizes}
                   selected={size}
-                  onChange={event => setSize(event.target.value)}
+                  onChange={(event) => setSize(event.target.value)}
                 />
               )}
             </div>

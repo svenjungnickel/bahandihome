@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
     <Layout hasHero={true}>
       <SEO title="Home" />
       <div className="grid grid-cols-3 gap-2 mt-5">
-        {placeholderImages.map(placeholderImage => (
+        {placeholderImages.map((placeholderImage) => (
           <Tile
             key={placeholderImage.id}
             title="Product Name"

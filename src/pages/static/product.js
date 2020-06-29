@@ -43,7 +43,7 @@ const ProductPage = () => {
         <Img fluid={image.childImageSharp.fluid} />
       </div>
       <div className="grid grid-cols-6 gap-2">
-        {productImages.map(productImage => (
+        {productImages.map((productImage) => (
           <Thumbnail key={productImage.id} image={productImage} />
         ))}
       </div>
@@ -75,7 +75,7 @@ const ProductPage = () => {
               <div>
                 <label htmlFor="colors">Color</label>
                 <select id="colors" defaultValue={colors[0]}>
-                  {colors.map(color => (
+                  {colors.map((color) => (
                     <option value={color}>{color}</option>
                   ))}
                 </select>
@@ -83,7 +83,7 @@ const ProductPage = () => {
               <div>
                 <label htmlFor="sizes">Size</label>
                 <select id="sizes" defaultValue={sizes[0]}>
-                  {sizes.map(size => (
+                  {sizes.map((size) => (
                     <option value={size}>{size}</option>
                   ))}
                 </select>

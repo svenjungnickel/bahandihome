@@ -51,7 +51,7 @@ const CartPage = () => {
   const addItemToCart = useAddItemToCart()
 
   const betterProductHandles = products.map(({ handle, variants }) => {
-    const newVariants = variants.map(variant => variant.shopifyId)
+    const newVariants = variants.map((variant) => variant.shopifyId)
     return {
       variants: newVariants,
       handle,
@@ -81,7 +81,7 @@ const CartPage = () => {
   }
 
   function getHandleForVariant(variantId) {
-    const selectedProduct = betterProductHandles.find(product => {
+    const selectedProduct = betterProductHandles.find((product) => {
       return product.variants.includes(variantId)
     })
 
@@ -89,7 +89,7 @@ const CartPage = () => {
   }
 
   function getImageFluidForVariant(variantId) {
-    const selectedVariant = variants.find(variant => {
+    const selectedVariant = variants.find((variant) => {
       return variant.shopifyId === variantId
     })
 
@@ -156,7 +156,7 @@ const CartPage = () => {
     <Layout>
       <SEO title="Cart" />
       <h1>Cart</h1>
-      {lineItems.map(item => (
+      {lineItems.map((item) => (
         <React.Fragment key={item.id}>
           <LineItem key={item.id} item={item} />
           <hr className="mt-3 mb-3" />
