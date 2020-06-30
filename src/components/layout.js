@@ -23,7 +23,7 @@ const Layout = ({ children, hasHero }) => {
     <>
       <Header siteTitle={title} />
       {true === hasHero ? <Hero title={title} description={description} /> : null}
-      <div className="container m-auto">
+      <div className="container m-auto mt-10">
         <main>{children}</main>
         <footer className="text-center mt-32">
           <p>

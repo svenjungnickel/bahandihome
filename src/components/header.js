@@ -14,7 +14,7 @@ const Header = ({ siteTitle }) => {
   ) : null
 
   return (
-    <header>
+    <header className="border-b">
       <div className="container m-auto flex items-center justify-between pt-4 pb-4">
         <h1 className="m-0 text-xl font-bold">
           <Link url="/" className="text-black tracking-tight no-underline hover:underline">
