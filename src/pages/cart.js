@@ -25,7 +25,7 @@ const CartPage = () => {
           image {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 120) {
+                fluid(maxWidth: 310) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
