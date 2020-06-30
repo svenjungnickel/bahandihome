@@ -1,0 +1,26 @@
+.header__cart {
+  position: relative;
+  padding: 10px 11px;
+  background-color: transparent;
+
+  .header__cart-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0.4rem;
+    top: 0.2rem;
+    font-weight: bold;
+    background-color: black;
+    color: #fff;
+    border-radius: 50%;
+    min-width: 1em;
+    height: 1em;
+
+    span {
+      font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: calc(11em / 16);
+      line-height: 1;
+    }
+  }
+}
