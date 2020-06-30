@@ -1,2 +1,2 @@
-export { Thumbnail } from "./Thumbnail"
-export { OptionPicker } from "./OptionPicker"
+export { Thumbnail } from './Thumbnail'
+export { OptionPicker } from './OptionPicker'

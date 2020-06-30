@@ -1,41 +1,31 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Link as GatsbyLink } from "gatsby"
-export const Link = ({ isButton, url, children, ...props }) => {
+import React from 'react'
+import { Link as GatsbyLink } from 'gatsby'
+import PropTypes from 'prop-types'
+
+const Link = ({ isButton, url, children, ...props }) => {
   return isButton ? (
     <GatsbyLink
-      {...props}
+      className="p-2 rounded no-underline font-semibold bg-black text-white text-center hover:bg-gray-800"
       activeClassName="active"
       to={url}
-      sx={{
-        py: 2,
-        px: 3,
-        borderRadius: 4,
-        textDecoration: "none",
-        fontWeight: 600,
-        background: "black",
-        color: "white",
-        textAlign: "center",
-        "&:hover": {
-          background: "gray",
-        },
-      }}
+      {...props}
     >
       {children}
     </GatsbyLink>
   ) : (
-    <GatsbyLink
-      {...props}
-      activeClassName="active"
-      to={url}
-      sx={{
-        color: "inherit",
-        "&:hover": {
-          color: "gray",
-        },
-      }}
-    >
+    <GatsbyLink activeClassName="active" to={url} className="text-current hover:text-gray-800 no" {...props}>
       {children}
     </GatsbyLink>
   )
 }
+
+Link.propTypes = {
+  url: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  isButton: PropTypes.bool,
+}
+Link.defaultProps = {
+  isButton: false,
+}
+
+export { Link }

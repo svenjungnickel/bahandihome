@@ -1,8 +1,7 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import PropTypes from "prop-types"
-import Img from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const Hero = ({ title, description }) => {
   const {
@@ -23,65 +22,20 @@ const Hero = ({ title, description }) => {
 
   const titleBox = (
     <div
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        border: "3px solid",
-        color: "white",
-        background: "rgba(0,0,0,0.40)",
-        px: 5,
-        py: 4,
-        textAlign: "center",
-        lineHeight: 1,
-      }}
+      style={{ background: 'rgba(0,0,0,0.40)' }}
+      className="flex flex-col border-4 border-solid text-white bg-opacity-75 p-8 pl-12 pr-12 text-center leading-none"
     >
-      <span
-        sx={{
-          fontSize: 40,
-          fontWeight: "800",
-          textTransform: "uppercase",
-        }}
-      >
-        {title}
-      </span>
-      <span sx={{ fontSize: 24, fontWeight: "500", mt: 2 }}>{description}</span>
+      <span className="text-4xl font-extrabold uppercase">{title}</span>
+      <span className="text-2xl font-medium mt-2">{description}</span>
     </div>
   )
 
   return (
-    <div
-      sx={{
-        maxHeight: "35rem",
-        overflow: "hidden",
-        background: "red",
-        position: "relative",
-      }}
-    >
-      <div
-        sx={{
-          position: "absolute",
-          zIndex: "10",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <div
-          sx={{
-            display: "flex",
-            height: "100%",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {titleBox}
-        </div>
+    <div style={{ maxHeight: '35rem' }} className="overflow-hidden relative">
+      <div className="absolute z-10 w-full h-full">
+        <div className="flex h-full w-full items-center justify-center">{titleBox}</div>
       </div>
-      <Img
-        imgStyle={{ height: "100%", width: "100%" }}
-        objectFit="contain"
-        fluid={heroImageSrc}
-      />
+      <Img style={{ position: 'initial' }} objectFit="cover" fluid={heroImageSrc} />
     </div>
   )
 }
@@ -92,8 +46,8 @@ Hero.propTypes = {
 }
 
 Hero.defaultProps = {
-  title: "Only Down",
-  description: "Get down with Down",
+  title: 'Only Down',
+  description: 'Get down with Down',
 }
 
 export { Hero }

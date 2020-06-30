@@ -1,18 +1,21 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Select, Label } from "@theme-ui/components"
+import React from 'react'
 
 export const OptionPicker = ({ name, options, onChange, selected }) => {
   return (
     <div>
-      <Label>{name}</Label>
-      <Select onChange={onChange} value={selected}>
-        {options.map(option => (
+      <label htmlFor="optionPicker">{name}</label>
+      <select
+        className="block border border-solid border-black rounded p-2 w-full"
+        id="optionPicker"
+        onBlur={onChange}
+        value={selected}
+      >
+        {options.map((option) => (
           <option value={option} key={option}>
             {option}
           </option>
         ))}
-      </Select>
+      </select>
     </div>
   )
 }

@@ -1,73 +1,31 @@
-/** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
-import PropTypes from "prop-types"
-import { Link } from "../components"
-import { useCartCount } from "gatsby-theme-shopify-manager"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from './link'
+import { useCartCount } from 'gatsby-theme-shopify-manager'
 
 const Header = ({ siteTitle }) => {
   const count = useCartCount()
 
   const countMarkup = (
-    <span
-      sx={{
-        display: "inline-block",
-        background: "white",
-        color: "black",
-        height: "20px",
-        lineHeight: "20px",
-        width: "20px",
-        fontSize: "0.8em",
-        borderRadius: "10px",
-        ml: 2,
-        top: "-2px",
-        position: "relative",
-        textAlign: "center",
-      }}
-    >
+    <span className="inline-block bg-white text-black h-5 leading-tight w-5 text-sm rounded-lg ml-2 relative text-center">
       {count}
     </span>
   )
 
   return (
-    <Styled.div as="header">
-      <div
-        sx={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          py: 4,
-          px: 3,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Styled.h1 sx={{ margin: 0, fontSize: 20, fontWeight: "bold" }}>
-          <Link
-            url="/"
-            sx={{
-              color: "black",
-              letterSpacing: -0.5,
-              textDecoration: `none`,
-              paddingLeft: "20px",
-              "&:hover": {
-                textDecoration: "underline",
-              },
-              //"&::before": {
-              //  content: '"▼"',
-              //  position: "absolute",
-              //  marginLeft: "-20px",
-              //},
-            }}
-          >
+    <header>
+      <div className="container m-auto flex items-center justify-between pt-4 pb-4">
+        <h1 className="m-0 text-xl font-bold">
+          <Link url="/" className="text-black tracking-tight no-underline hover:underline">
             {siteTitle}
           </Link>
-        </Styled.h1>
-        <Link url="/cart" isButton>
+        </h1>
+        <Link url="/cart" isButton={true}>
           Cart
           {countMarkup}
         </Link>
       </div>
-    </Styled.div>
+    </header>
   )
 }
 
