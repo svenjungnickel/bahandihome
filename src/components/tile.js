@@ -21,13 +21,10 @@ const Tile = ({ title, slug, price, image }) => {
 
   return (
     <div className="w-full p-3 flex flex-col m-auto sm:m-0">
-      <Link url={`/product/${slug}`} className="relative hover:opacity-75">
+      <Link url={`/product/${slug}`} className="relative hover:opacity-75 no-underline">
         <Img fluid={imageSrc} />
-      </Link>
-      <h2 className="mt-4 text-2xl">{title}</h2>
-      <span className="text-2xl mb-2">${price.toFixed(2)}</span>
-      <Link url={`/product/${slug}`} isButton>
-        View
+        <h2 className="mt-4 text-xl font-semibold">{title}</h2>
+        <span className="mb-2">${price.toFixed(2)}</span>
       </Link>
     </div>
   )

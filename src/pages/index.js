@@ -10,13 +10,14 @@ const IndexPage = ({ data }) => {
   return (
     <Layout hasHero={true}>
       <SEO title="Home" />
+      <h2 className="mt-5 text-4xl font-semibold text-center">Products</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-5">
         {products.map((product) => (
           <Tile
             key={product.handle}
             slug={product.handle}
             title={product.title}
-            price={Number(product.priceRange.maxVariantPrice.amount)}
+            price={Number(product.priceRange.minVariantPrice.amount)}
             image={product.images[0].localFile.childImageSharp.fluid}
           />
         ))}
@@ -43,7 +44,7 @@ export const IndexPageQuery = graphql`
           }
         }
         priceRange {
-          maxVariantPrice {
+          minVariantPrice {
             amount
             currencyCode
           }
