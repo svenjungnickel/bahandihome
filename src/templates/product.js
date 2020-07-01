@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState, useEffect, useMemo } from 'react'
 import Img from 'gatsby-image'
-import { Layout, SEO } from 'components'
-import { Thumbnail, OptionPicker } from './components'
+import { Layout, SEO, Thumbnail, OptionPicker } from 'components'
 import { graphql } from 'gatsby'
-import { prepareVariantsWithOptions, prepareVariantsImages } from './utilities'
+import { prepareVariantsWithOptions, prepareVariantsImages } from 'utilities/variants'
 import { useAddItemToCart } from 'gatsby-theme-shopify-manager'
 
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
@@ -34,15 +33,6 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
     }
   }, [size, color, variants, variant.shopifyId])
 
-  const gallery =
-    images.length > 1 ? (
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
-        {images.map(({ src, color }) => (
-          <Thumbnail key={color} src={src} onClick={() => setColor(color)} />
-        ))}
-      </div>
-    ) : null
-
   async function handleAddToCart() {
     try {
       await addItemToCart(variant.shopifyId, 1)
@@ -55,7 +45,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
   return (
     <Layout>
       <SEO title={product.title} />
-      {addedToCartMessage ? (
+      {addedToCartMessage && (
         <div className="mb-4 border border-black px-4 py-3 rounded relative" role="alert">
           {addedToCartMessage}
           <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
@@ -65,42 +55,57 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
             </svg>
           </span>
         </div>
-      ) : null}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-16">
         <div>
-          <div className="border border-solid border-gray-900 p-2 mb-2">
+          <div className="mb-2">
             <Img fluid={variant.image.localFile.childImageSharp.fluid} />
           </div>
-          {gallery}
+          {1 < images.length && (
+            <div className="grid grid-cols-3 lg:grid-cols-4 gap-2">
+              {images.map(({ src, color }) => (
+                <Thumbnail key={color} src={src} onClick={() => setColor(color)} active={color === variant.color} />
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex flex-col">
-          <h1 className="mt-0 mb-2">{product.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {colors && (
-                <OptionPicker
-                  key="Color"
-                  name="Color"
-                  options={colors}
-                  selected={color}
-                  onChange={(event) => setColor(event.target.value)}
-                />
-              )}
-              {sizes && (
-                <OptionPicker
-                  key="Size"
-                  name="Size"
-                  options={sizes}
-                  selected={size}
-                  onChange={(event) => setSize(event.target.value)}
-                />
-              )}
-            </div>
+          <h1 className="mt-0 mb-2 text-4xl font-semibold">{product.title}</h1>
+          {variant?.priceV2?.amount && variant?.priceV2?.currencyCode && (
+            <span className="font-semibold">
+              {variant.priceV2.amount} {variant.priceV2.currencyCode}
+            </span>
+          )}
+          {!variant?.priceV2?.amount && (
+            <span className="font-semibold">
+              {product.priceRange.minVariantPrice.amount} {product.priceRange.minVariantPrice.currencyCode}
+            </span>
+          )}
+          <span className="mt-2 text-xs">Tax included.</span>
+          <div className={`grid grid-cols-1 gap-2 mt-10 ${colors && sizes ? 'sm:grid-cols-2' : ''}`}>
+            {colors && (
+              <OptionPicker
+                key="Color"
+                name="Color"
+                options={colors}
+                selected={color}
+                onChange={(event) => setColor(event.target.value)}
+              />
+            )}
+            {sizes && (
+              <OptionPicker
+                key="Size"
+                name="Size"
+                options={sizes}
+                selected={size}
+                onChange={(event) => setSize(event.target.value)}
+              />
+            )}
           </div>
           <button className="mt-2 mb-2 block bg-black text-white rounded p-2 w-full" onClick={handleAddToCart}>
             Add to Cart
           </button>
+          <div className="mt-10" dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
         </div>
       </div>
     </Layout>
@@ -133,6 +138,16 @@ export const ProductPageQuery = graphql`
               }
             }
           }
+        }
+        priceV2 {
+          amount
+          currencyCode
+        }
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
         }
       }
     }
