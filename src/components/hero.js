@@ -25,7 +25,7 @@ const Hero = ({ title, description }) => {
       style={{ background: 'rgba(0,0,0,0.40)' }}
       className="flex flex-col border-4 border-solid text-white bg-opacity-75 p-8 pl-12 pr-12 text-center leading-none"
     >
-      <span className="text-4xl font-extrabold uppercase">{title}</span>
+      <h1 className="text-4xl font-extrabold uppercase">{title}</h1>
       <span className="text-2xl font-medium mt-2">{description}</span>
     </div>
   )

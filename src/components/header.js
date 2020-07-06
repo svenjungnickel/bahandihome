@@ -1,20 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
+import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from './link'
 import { useCartCount } from 'gatsby-theme-shopify-manager'
 import headerStyles from 'css/components/header.module.scss'
 
 const Header = ({ siteTitle }) => {
   const count = useCartCount()
+  const {
+    logo: {
+      childImageSharp: { fixed: logoSrc },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      logo: file(relativePath: { eq: "logo.png" }) {
+        childImageSharp {
+          fixed(width: 150) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
 
   return (
     <header className="border-b">
-      <div className="container m-auto flex items-center justify-between pt-4 pb-4">
-        <h1 className="m-0 text-xl font-bold">
-          <Link url="/" className="text-black tracking-tight no-underline hover:underline">
-            {siteTitle}
-          </Link>
-        </h1>
+      <div className="container m-auto flex items-center justify-between p-3 pb-4 pt-4">
+        <Link url="/">
+          <Img fixed={logoSrc} alt={siteTitle} />
+        </Link>
         <Link url="/cart" className={headerStyles.header__cart}>
           <svg
             aria-hidden="true"
